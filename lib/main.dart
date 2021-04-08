@@ -17,13 +17,24 @@ class Home extends StatelessWidget {
       ),
       body: Center(
         //child: Image.network('url') or Image.asset('assets/crystal.jpg)
-        child:Image(
-         // image: NetworkImage('https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Zm94fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
-          image: AssetImage('assets/crystal.jpg'),
-          )
+        /* child: Icon(
+          Icons.airport_shuttle,
+          color: Colors.green[600],
+          size: 48,
+        ), */
+        child:RaisedButton.icon(
+        onPressed: (){},
+        icon: Icon(
+          Icons.mail
+        ),
+        label: Text('Mail me'),
+        color: Colors.green,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          print('you clicked me');
+        },
         backgroundColor: Colors.green[300],
         child: Text('Click'),
       ),
