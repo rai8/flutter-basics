@@ -15,21 +15,23 @@ class Home extends StatelessWidget {
         title: Text('My First App'),
         centerTitle: true,
       ),
-      body: Center(
-        //child: Image.network('url') or Image.asset('assets/crystal.jpg)
-        /* child: Icon(
-          Icons.airport_shuttle,
-          color: Colors.green[600],
-          size: 48,
-        ), */
-        child:RaisedButton.icon(
-        onPressed: (){},
-        icon: Icon(
-          Icons.mail
-        ),
-        label: Text('Mail me'),
-        color: Colors.green,
-        ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(
+            'Hello world'
+          ),
+          FlatButton(
+            onPressed: null,
+            color: Colors.green[300], 
+            child: Text('click me')
+            ),
+            Container(
+              color: Colors.cyan,
+              padding: EdgeInsets.all(10.0),
+              child: Text('conteiner text'),
+            ),
+        ],//this means the children properties should be a list of widgets
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
