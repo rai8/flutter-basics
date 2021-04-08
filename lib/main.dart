@@ -15,23 +15,26 @@ class Home extends StatelessWidget {
         title: Text('My First App'),
         centerTitle: true,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
-            'Hello world'
+          Container(
+            padding: EdgeInsets.all(20),
+            color: Colors.green,
+            child: Text('Container 1'),
           ),
-          FlatButton(
-            onPressed: null,
-            color: Colors.green[300], 
-            child: Text('click me')
-            ),
-            Container(
-              color: Colors.cyan,
-              padding: EdgeInsets.all(10.0),
-              child: Text('conteiner text'),
-            ),
-        ],//this means the children properties should be a list of widgets
+          Container(
+            padding: EdgeInsets.all(30),
+            color: Colors.cyan,
+            child: Text('Container 2'),
+          ),
+          Container(
+            padding: EdgeInsets.all(40),
+            color: Colors.amber,
+            child: Text('Container 3'),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
