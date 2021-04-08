@@ -11,6 +11,19 @@ class MyApp extends StatelessWidget {
   }
 } */
 
-void main() => runApp(MaterialApp(
-  home: Text('Hello there'),
-));
+void main() => runApp(
+      MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('My First App'),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: Text('This is the body'),
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Text('Click'),
+          ),
+        ),
+      ),
+    );
