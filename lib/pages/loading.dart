@@ -7,7 +7,6 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  String time = 'loading...';
   //await is applied to void which is nt a future
   void setupWorldTime() async {
     WorldTime instance = WorldTime(
@@ -15,11 +14,11 @@ class _LoadingState extends State<Loading> {
 
     //get time for a given location
     await instance.getTime();
-   // print(instance.time);
-    //update time property
-    setState(() {
-      time=instance.time;
-      
+    //then redirect to the home page
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time
     });
   }
 
@@ -34,7 +33,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(50.0),
-        child: Text(time),
+        child: Text('Loading...'),
       ),
     );
   }
