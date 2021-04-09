@@ -1,6 +1,5 @@
+import 'package:appulda/services/world_time.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
 
 class Loading extends StatefulWidget {
   @override
@@ -8,24 +7,35 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getData() async {
-    Response response =
-        await get('https://jsonplaceholder.typicode.com/todos/1');
-    Map data = jsonDecode(response.body);
-    print(data);
-    print(data['title']);
+  String time = 'loading...';
+  //await is applied to void which is nt a future
+  void setupWorldTime() async {
+    WorldTime instance = WorldTime(
+        location: 'Berlin', flag: 'Germany.png', url: 'Europe/Berlin');
+
+    //get time for a given location
+    await instance.getTime();
+   // print(instance.time);
+    //update time property
+    setState(() {
+      time=instance.time;
+      
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    setupWorldTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Loading Screen'),
+      body: Padding(
+        padding: EdgeInsets.all(50.0),
+        child: Text(time),
+      ),
     );
   }
 }
