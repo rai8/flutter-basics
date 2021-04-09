@@ -6,20 +6,25 @@ void main() => runApp(
       ),
     );
 
-class Card extends StatelessWidget {
+class Card extends StatefulWidget {
+  @override
+  _CardState createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  //define our variables here
+  int ninjaLevel = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          backgroundColor: Colors.grey[900],
-
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-          title: Text('School Card ID'),
-          centerTitle: true,
-          backgroundColor: Colors.grey[850],
-          elevation: 0.0,
+        title: Text('School Card ID'),
+        centerTitle: true,
+        backgroundColor: Colors.grey[850],
+        elevation: 0.0,
       ),
       body: Padding(
-        
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,10 +35,7 @@ class Card extends StatelessWidget {
                 radius: 40.0,
               ),
             ),
-            Divider(
-              height: 60.0,
-              color: Colors.grey[800]
-            ),
+            Divider(height: 60.0, color: Colors.grey[800]),
             Text(
               'NAME',
               style: TextStyle(
@@ -43,7 +45,7 @@ class Card extends StatelessWidget {
             ),
             SizedBox(
               height: 10.0,
-              ),
+            ),
             Text(
               'Rhytonne Brite',
               style: TextStyle(
@@ -55,8 +57,8 @@ class Card extends StatelessWidget {
             ),
             SizedBox(
               height: 30.0,
-              ),
-              Text(
+            ),
+            Text(
               'CURRENT NINJA LEVEL',
               style: TextStyle(
                 color: Colors.white,
@@ -65,9 +67,9 @@ class Card extends StatelessWidget {
             ),
             SizedBox(
               height: 10.0,
-              ),
+            ),
             Text(
-              '8',
+              '$ninjaLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
@@ -77,29 +79,37 @@ class Card extends StatelessWidget {
             ),
             SizedBox(
               height: 30.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.email,
-                    color: Colors.amberAccent[200],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'hytonne@outlook.com',
-                      style: TextStyle(
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.email,
+                  color: Colors.amberAccent[200],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    'hytonne@outlook.com',
+                    style: TextStyle(
                         fontSize: 18.0,
                         letterSpacing: 1.0,
-                        color: Colors.white
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                        color: Colors.white),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[700],
+      ),
     );
   }
 }
