@@ -7,6 +7,7 @@ class WorldTime {
   String time; //time in that location
   String flag; //url for the assset flag icon
   String url; //url for the api location endpoint
+  bool isDayTime; //tru or flase if daytime or not
 
   //creating a constructor
   WorldTime({this.location, this.flag, this.time, this.url});
@@ -42,6 +43,9 @@ class WorldTime {
       }
 
       //  print(now);
+
+      //codition to determine if it is day or night
+      isDayTime = now.hour > 6 && now.hour < 20 ? true : false;
       // //convert the date to a string - setting the time property
       time = DateFormat.jm().format(now);
     } catch (e) {
