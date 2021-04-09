@@ -9,7 +9,7 @@ class _HomeState extends State<Home> {
   Map data = {};
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     print(data);
 
     //set backgroud
@@ -29,21 +29,31 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async {
+                    dynamic result =
+                        await Navigator.pushNamed(context, '/location');
+
+                    //cahnge the state
+                    setState(() {
+                      data = {
+                        'time': result['time'],
+                        'flag': result['flag'],
+                        'location': result['location'],
+                        'isDayTime': result['isDayTime'],
+                      };
+                    });
                   },
                   icon: Icon(
                     Icons.edit_location,
                     color: Colors.grey[300],
-                    ),
+                  ),
                   label: Text(
                     'Edit Location',
                     style: TextStyle(
                       color: Colors.grey[300],
                       fontSize: 18.0,
                     ),
-                    )
-                    ),
+                  )),
               SizedBox(
                 height: 20.0,
               ),
@@ -52,9 +62,10 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   Text(
                     data['location'],
-                    style: TextStyle(fontSize: 28.0, 
-                    letterSpacing: 2.0,
-                    color: Colors.white,
+                    style: TextStyle(
+                      fontSize: 28.0,
+                      letterSpacing: 2.0,
+                      color: Colors.white,
                     ),
                   ),
                 ],
