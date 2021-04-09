@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'quote.dart';
 
@@ -15,12 +17,48 @@ class QuoteList extends StatefulWidget {
 class _QuoteListState extends State<QuoteList> {
   //defining our variables
   List<Quote> quotes = [
-   Quote(author: 'Oscar Wilde', text: 'Be yourself; everyone else is already taken'),
-    Quote(author: 'Krayl Michigan', text: 'I have nothing to declare except my genius'),
-    Quote(author: 'Stanley Bailey', text: 'The truth is rarely pure and never simple'),
-      
-   
+    Quote(
+        author: 'Oscar Wilde',
+        text: 'Be yourself; everyone else is already taken'),
+    Quote(
+        author: 'Krayl Michigan',
+        text: 'I have nothing to declare except my genius'),
+    Quote(
+        author: 'Stanley Bailey',
+        text: 'The truth is rarely pure and never simple'),
   ];
+
+  //create a function that returns a widget for our card template
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600]
+              ),
+              ),
+              SizedBox(height: 6.0,),
+              Text(
+              quote.author,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey[800],
+              ),
+              ),
+            
+          ],
+          ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +75,9 @@ class _QuoteListState extends State<QuoteList> {
           /* children: quotes.map((quote) {
             return Text(quote);
           }).toList(), */
-          children: quotes.map((quote) => Text('${quote.text}- ${quote.author}')).toList(),
+          children: quotes
+              .map((quote) => quoteTemplate(quote))
+              .toList(),
         ),
       ),
     );
